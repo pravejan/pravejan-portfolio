@@ -84,9 +84,17 @@ document.querySelector('.download-cv')?.addEventListener('click', function(e) {
     const originalText = this.textContent;
     this.innerHTML = '<i class="fas fa-download"></i> Downloading...';
     
+    // Ensure download works on GitHub Pages
     setTimeout(() => {
         this.textContent = originalText;
     }, 2000);
+    
+    // Fallback for browsers that might block the download
+    setTimeout(() => {
+        if (this.textContent === originalText) {
+            window.open('Pravejan CV.pdf', '_blank');
+        }
+    }, 2500);
 });
 
 
